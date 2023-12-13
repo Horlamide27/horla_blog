@@ -29,8 +29,10 @@ export default function PaginatedContent({ content, header , children, ...props 
                                         {item.title ?
                                             <Link href={route('posts.show', {id: item.id})}>
                                             {item?.title}
-                                        </Link>
-                                        : item?.content
+                                            </Link>
+                                        : <Link href={route('posts.show', {id: item.post_id})}>
+                                                {item?.content}
+                                            </Link>
                                         }
                                     </h3>
                                 </div>
