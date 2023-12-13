@@ -2,6 +2,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.jsx";
 import {Head, Link, useForm} from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import Banner from "@/Components/Banner.jsx";
+import PaginatedContent from "@/Components/PaginatedContent.jsx";
 
 export default function AnimeShow({auth, anime}) {
     const {delete: deleteAnime} = useForm({});
@@ -28,17 +29,18 @@ export default function AnimeShow({auth, anime}) {
                 </Link>
             </div>
             <div className="mt-8">
-                {anime?.posts?.map((post) => (
-                    <div className="bg-white shadow overflow-hidden sm:rounded-lg mb-4" key={post.id}>
-                        <div className="px-4 py-5 sm:px-6">
-                            <h3 className="text-lg leading-6 font-medium text-gray-900">
-                                <Link href={route('posts.show', {id: post.id})}>
-                                    {post.title}
-                                </Link>
-                            </h3>
-                        </div>
-                    </div>
-                ))}
+                <PaginatedContent content={anime.posts}/>
+                {/*{anime?.posts?.map((post) => (*/}
+                {/*    <div className="bg-white shadow overflow-hidden sm:rounded-lg mb-4" key={post.id}>*/}
+                {/*        <div className="px-4 py-5 sm:px-6">*/}
+                {/*            <h3 className="text-lg leading-6 font-medium text-gray-900">*/}
+                {/*                <Link href={route('posts.show', {id: post.id})}>*/}
+                {/*                    {post.title}*/}
+                {/*                </Link>*/}
+                {/*            </h3>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*))}*/}
             </div>
         </div>
         </AuthenticatedLayout>
