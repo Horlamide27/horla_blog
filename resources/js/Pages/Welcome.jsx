@@ -1,6 +1,6 @@
 import { Link, Head } from '@inertiajs/react';
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+export default function Welcome({ auth }) {
     return (
         <>
             <Head title="Welcome" />
@@ -50,7 +50,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         AniFinder
                     </h1>
                     <Link href={ route("animes.create")} className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded">
-                        Create Animes
+                        Create Anime Discussion
                     </Link>
 
                 </div>
