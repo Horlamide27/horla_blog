@@ -26,9 +26,12 @@ export default function PaginatedContent({ content, header , children, ...props 
                             <div className="bg-white shadow overflow-hidden sm:rounded-lg mb-4" key={item.id}>
                                 <div className="px-4 py-5 sm:px-6">
                                     <h3 className="text-lg leading-6 font-medium text-gray-900">
-                                        <Link href={route('posts.show', {id: item.id})}>
-                                            {item.title}
+                                        {item.title ?
+                                            <Link href={route('posts.show', {id: item.id})}>
+                                            {item?.title}
                                         </Link>
+                                        : item?.content
+                                        }
                                     </h3>
                                 </div>
                             </div>
