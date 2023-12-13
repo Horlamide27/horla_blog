@@ -69,4 +69,14 @@ class AnimeController extends Controller
         $anime->save();
         return Redirect::route('animes.show', ['id' => $anime->id]);
     }
+    public function destroy(string $id){
+//        $user = $anime->user_id;
+        //if exists
+        if(!Anime::find($id)){
+            return Redirect::route('animes.user-index', ['id' => auth()->user()->id]);
+        }
+        $anime = Anime::find($id);
+        $anime->delete();
+        return Redirect::route('animes.user-index', ['id' => auth()->user()->id]);
+    }
 }
