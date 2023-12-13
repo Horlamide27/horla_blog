@@ -10,6 +10,14 @@ use Inertia\Inertia;
 
 class AnimeController extends Controller
 {
+    public function userIndex(string $id){
+        $animes = Anime::where("user_id", $id)->get();
+        foreach ($animes as $anime) {
+            $anime->cover;
+        }
+        return Inertia::render('Anime/UserIndex',['animes' => $animes]);
+
+    }
     public function create() {
         return Inertia::render('Anime/CreateAnime');
     }

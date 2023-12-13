@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 //route group for animes
 Route::middleware( ['auth', 'verified'])->group(function () {
     Route::get('/animes', [AnimeController::class, 'index'])->name('animes.index');
+    Route::get('/animes/user/{id}', [AnimeController::class, 'userIndex'])->name('animes.user-index');
     Route::get('/animes/create', [AnimeController::class, 'create'])->name('animes.create');
     Route::post('/animes', [AnimeController::class, 'store'])->name('animes.store');
     Route::get('/animes/{id}', [AnimeController::class, 'show'])->name('animes.show');
