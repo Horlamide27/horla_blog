@@ -58,6 +58,7 @@ class AnimeController extends Controller
         $anime = Anime::find($id);
         $anime->cover;
         $anime->genres;
+        $anime->posts;
         return Inertia::render('Anime/AnimeShow', [
             'anime' => $anime,
         ]);
