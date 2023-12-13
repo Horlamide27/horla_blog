@@ -40,4 +40,25 @@ class AnimeController extends Controller
             'anime' => $anime,
         ]);
     }
+    public function edit(string $id){
+        $anime = Anime::find($id);
+        return Inertia::render('Anime/EditAnime', [
+            'anime' => $anime,
+        ]);
+    }
+    public function update (Request $request, string $id){
+        $request->validate([
+            'title' => 'nullable',
+            'about' => 'nullable',
+        ]);
+        $anime = Anime::find($id);
+        if($request->has('title')){
+            $anime->title = $request->all()["title"];
+        }
+        if($request->has('about')){
+            $anime->about = $request->all()["about"];
+        }
+        $anime->save();
+        return Redirect::route('animes.show', ['id' => $anime->id]);
+    }
 }

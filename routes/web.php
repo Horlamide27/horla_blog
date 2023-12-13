@@ -27,6 +27,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/image/{picture}', function ($filename) {
+    return response()->file(storage_path('app/public/images/' . $filename));
+})->name('images.image');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
