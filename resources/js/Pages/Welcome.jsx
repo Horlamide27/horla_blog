@@ -49,8 +49,8 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
                         AniFinder
                     </h1>
-                    <Link className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded">
-                        Find Animes
+                    <Link href={ route("animes.create")} className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded">
+                        Create Animes
                     </Link>
 
                 </div>
