@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anime;
+use App\Models\Genre;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -14,6 +15,7 @@ class AnimeController extends Controller
         $animes = Anime::where("user_id", $id)->get();
         foreach ($animes as $anime) {
             $anime->cover;
+            $anime->genres;
         }
         return Inertia::render('Anime/UserIndex',['animes' => $animes]);
 
@@ -26,10 +28,12 @@ class AnimeController extends Controller
             'title' => 'required',
             'about' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'genres' => 'required|array',
         ]);
         $anime = new Anime;
         $anime->title = $request->all()["title"];
         $anime->about = $request->all()["about"];
+
         $anime->user()->associate($request->user()->id);
         $image = $request->file('image');
         $image->storeAs('images', $image->getClientOriginalName(), 'public');
@@ -39,11 +43,21 @@ class AnimeController extends Controller
         $img->imageable()->associate($anime);
         $img->save();
 
+        //associate anime with genres
+        foreach ($request->all()["genres"] as $g) {
+            if(!Genre::where("name", $g)->exists()){
+                $anime->genres()->create(["name" => $g]);
+            }else{
+                $anime->genres()->attach(Genre::where("name", $g)->first());
+            }
+        }
+
         return Redirect::route('animes.show', ['id' => $anime->id]);
     }
     public function show(string $id){
         $anime = Anime::find($id);
         $anime->cover;
+        $anime->genres;
         return Inertia::render('Anime/AnimeShow', [
             'anime' => $anime,
         ]);
@@ -70,8 +84,6 @@ class AnimeController extends Controller
         return Redirect::route('animes.show', ['id' => $anime->id]);
     }
     public function destroy(string $id){
-//        $user = $anime->user_id;
-        //if exists
         if(!Anime::find($id)){
             return Redirect::route('animes.user-index', ['id' => auth()->user()->id]);
         }
