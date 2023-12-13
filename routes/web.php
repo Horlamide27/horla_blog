@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +38,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//route group for animes
+Route::middleware( ['auth', 'verified'])->group(function () {
+    Route::get('/animes', [AnimeController::class, 'index'])->name('animes.index');
+    Route::get('/animes/create', [AnimeController::class, 'create'])->name('animes.create');
+    Route::post('/animes', [AnimeController::class, 'store'])->name('animes.store');
+    Route::get('/animes/{id}', [AnimeController::class, 'show'])->name('animes.show');
+    Route::get('/animes/{id}/edit', [AnimeController::class, 'edit'])->name('animes.edit');
+    Route::patch('/animes/{id}', [AnimeController::class, 'update'])->name('animes.update');
+    Route::delete('/animes/{id}', [AnimeController::class, 'destroy'])->name('animes.destroy');
+});
 
 //route group for posts
 Route::middleware( ['auth', 'verified'])->group(function () {

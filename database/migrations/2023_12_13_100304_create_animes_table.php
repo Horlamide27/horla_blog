@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string("title");
+            $table->foreignId("user_id")->constrained();
             $table->text("about");
             $table->string("cover")->default("https://via.placeholder.com/200");
         });
