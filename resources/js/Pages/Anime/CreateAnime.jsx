@@ -5,24 +5,35 @@ import TextArea from "@/Components/TextArea.jsx";
 import TextInput from "@/Components/TextInput.jsx";
 import Authenticated from "@/Layouts/AuthenticatedLayout.jsx";
 import {useForm} from "@inertiajs/react";
+import Genre from "@/Pages/Anime/Genre.jsx";
 
 export default function CreateAnime({auth}) {
     const {data, setData, post, processing, errors} = useForm({
         title: '',
         about: '',
         image: '',
+        genres: [],
     });
 
     const submit = (e) => {
         e.preventDefault();
         post(route('animes.store'));
     }
+    const addGenre = (e) => {
+        e.preventDefault();
+        if (data.genres.length < 3) {
+            !data.genres.includes(e.target.value) ? setData('genres', [...data.genres, e.target.value]) : null;
+        } else alert("You can only add 3 genres");
+    }
+    const removeGenre = (genre) => {
+        setData('genres', data.genres.filter((g) => g !== genre));
+    }
     return (
         <Authenticated user={auth.user}>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-lg">
                     <h1 className="text-center text-lg font-bold text-red-600 sm:text-2xl">
-                        Make a New Anime
+                        Make a New Anime Discussion
                     </h1>
 
                     <form
@@ -55,7 +66,22 @@ export default function CreateAnime({auth}) {
 
                             <InputError message={errors.about} className="mt-2"/>
                         </div>
-
+                        <div>
+                            <InputLabel htmlFor="genres" value="Genres"/>
+                            <select onChange={(e) => addGenre(e)} className="my-4 mr-3">
+                                <option disabled>Pick a genre</option>
+                                <option value="Action">Action</option>
+                                <option value="Comedy">Comedy</option>
+                                <option value="Romance">Romance</option>
+                                <option value="Drama">Drama</option>
+                            </select>
+                            {
+                                [...data.genres].map((genre, id) => (
+                                    <Genre key={id} title={genre} deleteGenre={() => removeGenre(genre)}/>
+                                ))
+                            }
+                            <InputError message={errors.genres} className="mt-2"/>
+                        </div>
                         <div>
                             <InputLabel htmlFor="image" value="Image"/>
                             <div className="w-full inline">
