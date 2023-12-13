@@ -11,6 +11,14 @@ use Inertia\Inertia;
 
 class AnimeController extends Controller
 {
+    public function index(){
+        $animes = Anime::all();
+        foreach ($animes as $anime) {
+            $anime->cover;
+            $anime->genres;
+        }
+        return Inertia::render('Anime/AnimeIndex',['animes' => $animes]);
+    }
     public function userIndex(string $id){
         $animes = Anime::where("user_id", $id)->get();
         foreach ($animes as $anime) {
