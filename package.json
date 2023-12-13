@@ -20,6 +20,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "react-paginate": "^8.2.0",
         "ziggy-js": "^1.8.1"
     }
 }
