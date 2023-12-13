@@ -20,7 +20,7 @@ export default function Dashboard({ auth }) {
                         {/*</Link>*/}
                         <Link href={ route('animes.user-index', auth.user.id)} className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded"
                         >
-                            See your Animes
+                            See your Discussions
                         </Link>
                     </div>
                 </div>
