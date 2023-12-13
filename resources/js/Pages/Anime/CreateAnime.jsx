@@ -27,7 +27,7 @@ export default function CreateAnime({auth}) {
 
                     <form
                         onSubmit={(e) => submit(e)}
-                        className="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+                        className="mt-6 mb-0 space-y-4 rounded-lg bg-yellow-50 p-4 shadow-lg sm:p-6 lg:p-8"
                     >
                         <div>
                             <InputLabel htmlFor="title" value="Title"/>
