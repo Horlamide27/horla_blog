@@ -14,14 +14,17 @@ export default function Dashboard({ auth }) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6  py-4">
                         <div className="text-gray-900 mb-6">You're logged in!</div>
-                        {/*<Link href={ route('posts.create')} className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded"*/}
-                        {/*>*/}
-                        {/*    Make a Post*/}
-                        {/*</Link>*/}
-                        <Link href={ route('animes.user-index', auth.user.id)} className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded"
-                        >
-                            See your Discussions
-                        </Link>
+
+                        <div className='space-x-8'>
+                            <Link href={ route('animes.user-index', auth.user.id)} className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded"
+                            >
+                                See your Discussions
+                            </Link>
+                            <Link href={ route('animes.index')} className="mt-10 btn btn-primary btn-lg bg-indigo-50 p-2 rounded"
+                            >
+                                See All Discussions
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
