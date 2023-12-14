@@ -2,8 +2,6 @@ import PaginatedContent from "@/Components/PaginatedContent.jsx";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.jsx";
 
 export default function Posts({auth, posts, comments}){
-    console.log(comments
-    )
     return (
         <AuthenticatedLayout user={auth.user}>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">

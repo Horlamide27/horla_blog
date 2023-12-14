@@ -20,6 +20,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "laravel-echo": "^1.15.3",
+        "pusher-js": "^8.4.0-rc2",
+        "react-hot-toast": "^2.4.1",
         "react-paginate": "^8.2.0",
         "ziggy-js": "^1.8.1"
     }

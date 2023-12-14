@@ -14,7 +14,7 @@ export default function ShowPost({auth, post, author}){
     const { delete:deleteFnPost} = useForm({});
     const submit = (e) => {
         e.preventDefault();
-        postComment(route('posts.comment.store', {id: post.id}));
+        postComment(route('posts.comment.store', {post_id: post.id}));
     }
     const deleteComment = (e, comment_id) => {
         e.preventDefault();

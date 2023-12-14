@@ -59,7 +59,7 @@ Route::middleware( ['auth', 'verified'])->group(function () {
     Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
     Route::patch('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-    Route::post('/posts/{id}/comment', [CommentController::class, 'store'])->name('posts.comment.store');
+    Route::post('/posts/{post_id}/comment', [CommentController::class, 'store'])->name('posts.comment.store');
     Route::delete('/posts/{id}/comment/{comment_id}', [CommentController::class, 'destroy'])->name('posts.comment.destroy');
 });
 Route::get('/posts/user/{id}', [PostController::class, 'userIndex'])->name('posts.user-index');
